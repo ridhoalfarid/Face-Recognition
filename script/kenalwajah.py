@@ -1,6 +1,4 @@
-import cv2
-import time
-import os
+import cv2, time
 from PIL import Image
 
 camera = 0
@@ -11,12 +9,12 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 faceDetect = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 recognizer.read('D:/SEMESTER 6/AI for DS/face_recognition/training/training.xml')
 
+id = 0
 fontFace = cv2.FONT_HERSHEY_SIMPLEX
 fontScale = 1
-fontColor = (0, 255, 255)
+fontColor = (255, 0, 0)
 
 while True:
-    a += 1
     check, frame = video.read()
     print(check)
     print(frame)
@@ -25,17 +23,16 @@ while True:
     faces = faceDetect.detectMultiScale(gray, 1.3, 5)
 
     for (x, y, w, h) in faces:
-        cv2.imwrite("DataSet/User.0." + str(a) + ".jpg", gray[y:y+h, x:x+w])
+        a = a+1
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
         id, conf = recognizer.predict(gray[y:y+h, x:x+w])
 
         if id == 1:
-            name = "Ridho"
+            id = "Ridho"
         elif (id==2):
-            name = "Fadil"
+            id = "Fadil"
 
-        cv2.putText(frame, str(name), (x + w, y + h), fontFace, fontScale, fontColor)
+        cv2.putText(frame, str(id), (x + w, y + h), fontFace, fontScale, fontColor)
 
     cv2.imshow("wajah", frame)
 
