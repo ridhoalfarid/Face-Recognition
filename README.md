@@ -1,0 +1,1 @@
+This project is a real-time face recognition system built with OpenCV to identify individuals from a live video stream. The application first captures facial data to train a custom LBPH model, which is then used to recognize and label a person's name on screen.
